@@ -134,7 +134,6 @@ CONF_DEVICE_OUT_PIPE_OUT2_TEMP = "outdoor_pipe_out2_temperature"
 CONF_DEVICE_OUT_PIPE_IN3_TEMP = "outdoor_pipe_in3_temperature"
 CONF_DEVICE_FILTER_USE_TIME = "filter_use_time"
 CONF_DEVICE_TOTAL_OPERATION_TIME = "total_operation_time"
-CONF_DEVICE_DISPLAY_LIGHTING = "display_lighting"
 
 
 def preset_entry(name: str, value: int, displayName: str):
@@ -468,10 +467,6 @@ DEVICE_SCHEMA = cv.Schema(
             state_class=STATE_CLASS_MEASUREMENT,
             icon="mdi:counter",
         ),
-        cv.Optional(CONF_DEVICE_DISPLAY_LIGHTING): switch.switch_schema(
-            Samsung_AC_Switch,
-            icon="mdi:led-on",
-        ),
     }
 )
 
@@ -690,10 +685,6 @@ async def to_code(config):
             CONF_DEVICE_TOTAL_OPERATION_TIME: (
                 sensor.new_sensor,
                 var_dev.set_total_operation_time_sensor,
-            ),
-            CONF_DEVICE_DISPLAY_LIGHTING: (
-                switch.new_switch,
-                var_dev.set_display_lighting_switch,
             ),
         }
 
