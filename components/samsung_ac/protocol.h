@@ -109,6 +109,7 @@ namespace esphome
             virtual void set_outdoor_4way_valve_text_sensor(const std::string &address, int value) = 0;
             virtual void set_filter_use_time(const std::string &address, float value) = 0;
             virtual void set_total_operation_time(const std::string &address, float value) = 0;
+            virtual void set_display_lighting(const std::string &address, bool value) = 0;
         };
 
         struct ProtocolRequest
@@ -125,6 +126,7 @@ namespace esphome
             optional<FanMode> fan_mode;
             optional<SwingMode> swing_mode;
             optional<AltMode> alt_mode;
+            optional<bool> display_lighting;
         };
 
         class Protocol

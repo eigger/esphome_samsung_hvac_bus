@@ -276,6 +276,13 @@ public:
         cout << "> " << address << " set_total_operation_time=" << to_string(value) << endl;
         last_set_total_operation_time_address = address;
         last_set_total_operation_time_value = value;
+    std::string last_set_display_lighting_address;
+    bool last_set_display_lighting_value;
+    void set_display_lighting(const std::string &address, bool value) override
+    {
+        cout << "> " << address << " set_display_lighting=" << to_string(value) << endl;
+        last_set_display_lighting_address = address;
+        last_set_display_lighting_value = value;
     }
 
 
