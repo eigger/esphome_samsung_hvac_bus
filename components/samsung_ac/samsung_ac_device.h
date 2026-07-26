@@ -145,7 +145,7 @@ namespace esphome
       sensor::Sensor *outdoor_voltage{nullptr};
       sensor::Sensor *filter_use_time{nullptr};
       sensor::Sensor *total_operation_time{nullptr};
-      Samsung_AC_Switch *display_lighting{nullptr};
+      Samsung_AC_Button *display_off_button{nullptr};
       text_sensor::TextSensor *outdoor_operation_odu_mode_text{nullptr};
       text_sensor::TextSensor *outdoor_operation_heatcool_text{nullptr};
       text_sensor::TextSensor *indoor_real_mode_text{nullptr};
@@ -319,13 +319,13 @@ namespace esphome
         };
       }
 
-      void set_display_lighting_switch(Samsung_AC_Switch *sw)
+      void set_display_off_button(Samsung_AC_Button *btn)
       {
-        display_lighting = sw;
-        display_lighting->write_state_ = [this](bool value)
+        display_off_button = btn;
+        display_off_button->press_action_ = [this]()
         {
           ProtocolRequest request;
-          request.display_lighting = value;
+          request.display_off = true;
           publish_request(request);
         };
       }
@@ -443,14 +443,6 @@ namespace esphome
           total_operation_time->publish_state(value);
       }
 
-      optional<bool> _cur_display_lighting;
-
-      void update_display_lighting(bool value)
-      {
-        _cur_display_lighting = value;
-        if (display_lighting != nullptr)
-          display_lighting->publish_state(value);
-      }
 
       void update_power(bool value)
       {

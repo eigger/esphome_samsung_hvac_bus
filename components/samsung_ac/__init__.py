@@ -468,9 +468,9 @@ DEVICE_SCHEMA = cv.Schema(
             state_class=STATE_CLASS_MEASUREMENT,
             icon="mdi:counter",
         ),
-        cv.Optional(CONF_DEVICE_DISPLAY_LIGHTING): switch.switch_schema(
-            Samsung_AC_Switch,
-            icon="mdi:led-on",
+        cv.Optional(CONF_DEVICE_DISPLAY_LIGHTING): button.button_schema(
+            Samsung_AC_Button,
+            icon="mdi:monitor-off",
         ),
     }
 )
@@ -692,8 +692,8 @@ async def to_code(config):
                 var_dev.set_total_operation_time_sensor,
             ),
             CONF_DEVICE_DISPLAY_LIGHTING: (
-                switch.new_switch,
-                var_dev.set_display_lighting_switch,
+                button.new_button,
+                var_dev.set_display_off_button,
             ),
         }
 
