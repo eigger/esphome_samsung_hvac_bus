@@ -342,6 +342,7 @@ namespace esphome
             ENUM_in_state_defrost_mode = 0x402e,  // [R] Defrost Valve
             ENUM_IN_MTFC = 0x402f,  // [R] MTFC Status
             ENUM_IN_SILENCE = 0x4046,  // [R] Silence Mode
+            ENUM_IN_SILENCE_AUX = 0X4129, // [RW] community observed
             ENUM_IN_3WAY_VALVE = 0x4067,  // [R] 3Way Valve | 0..1 | 0=Room; 1=Tank
             ENUM_IN_SOLAR_PUMP = 0x4068,  // [R] Solar Pump
             ENUM_IN_THERMOSTAT1 = 0x4069,  // [R] Thermostat1 / Cooling Thermostat | 0..2 | 0=Off; 1=Cool; 2=Heat

@@ -540,6 +540,17 @@ namespace esphome
                     packet.messages.push_back(automatic_cleaning);
                 }
 
+                if (request.silence)
+                {
+                    MessageSet silence(MessageNumber::ENUM_IN_SILENCE);
+                    silence.value = request.silence.value() ? 1 : 0;
+                    packet.messages.push_back(silence);
+
+                    MessageSet silence_aux(MessageNumber::ENUM_IN_SILENCE_AUX);
+                    silence_aux.value = request.silence_aux.value() ? 1 : 0;
+                    packet.messages.push_back(silence_aux);
+                }
+
                 if (request.water_heater_power)
                 {
                     MessageSet waterheaterpower(MessageNumber::ENUM_in_water_heater_power);
@@ -624,6 +635,9 @@ namespace esphome
 
             if (request.automatic_cleaning)
                 queued.automatic_cleaning = request.automatic_cleaning;
+
+            if (request.silence)
+                queued.silence = request.silence;
 
             if (request.water_heater_power)
                 queued.water_heater_power = request.water_heater_power;
@@ -801,6 +815,12 @@ namespace esphome
             {
                 LOG_MESSAGE(ENUM_in_operation_automatic_cleaning, (double)message.value, source, dest);
                 target->set_automatic_cleaning(source, message.value != 0);
+                break;
+            }
+            case MessageNumber::ENUM_IN_SILENCE:
+            {
+                LOG_MESSAGE(ENUM_IN_SILENCE, (double)message.value, source, dest);
+                target->set_silence(source, message.value != 0);
                 break;
             }
             case MessageNumber::ENUM_in_water_heater_power:

@@ -191,6 +191,12 @@ namespace esphome
                                  { dev->update_automatic_cleaning(value); });
       }
 
+      void set_silence(const std::string address, bool value) override
+      {
+        execute_if_device_exists(address, [value](Samsung_AC_Device *dev)
+                                 { dev->update_silence(value); });
+      }
+
       void set_water_heater_power(const std::string address, bool value) override
       {
         execute_if_device_exists(address, [value](Samsung_AC_Device *dev)

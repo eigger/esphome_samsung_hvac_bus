@@ -97,6 +97,7 @@ CONF_DEVICE_WATER_TEMPERATURE = "water_temperature"
 CONF_DEVICE_WATER_TARGET_TEMPERATURE = "water_target_temperature"
 CONF_DEVICE_POWER = "power"
 CONF_DEVICE_AUTOMATIC_CLEANING = "automatic_cleaning"
+CONF_DEVICE_SILENCE = "silence"
 CONF_DEVICE_WATER_HEATER_POWER = "water_heater_power"
 CONF_DEVICE_MODE = "mode"
 CONF_DEVICE_WATER_HEATER_MODE = "water_heater_mode"
@@ -529,6 +530,9 @@ DEVICE_SCHEMA = cv.Schema(
         cv.Optional(CONF_DEVICE_AUTOMATIC_CLEANING): switch.switch_schema(
             Samsung_AC_Switch, icon="mdi:broom"
         ),
+        cv.Optional(CONF_DEVICE_SILENCE): switch.switch_schema(
+            Samsung_AC_Switch, icon="mdi:volume-off"
+        )
         cv.Optional(CONF_DEVICE_WATER_HEATER_POWER): switch.switch_schema(
             Samsung_AC_Switch
         ),
@@ -992,6 +996,10 @@ async def to_code(config):
                 switch.new_switch,
                 var_dev.set_automatic_cleaning_switch,
             ),
+            CONF_DEVICE_SILENCE: (
+                switch.new_switch,
+                var_dev.set_silence_switch,
+            )
             CONF_DEVICE_WATER_HEATER_POWER: (
                 switch.new_switch,
                 var_dev.set_water_heater_power_switch,
