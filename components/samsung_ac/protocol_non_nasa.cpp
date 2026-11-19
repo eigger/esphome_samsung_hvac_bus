@@ -122,7 +122,7 @@ namespace esphome
             {
                 if (debug_log_messages)
                 {
-                    LOGW("Cmd8D: Large time delta detected (%u ms, ~%.1f hours), capping to 1 hour", delta_ms, delta_ms / 3600000.0f);
+                    LOGW("Cmd8D: Large time delta detected (%" PRIu32 " ms, ~%.1f hours), capping to 1 hour", delta_ms, delta_ms / 3600000.0f);
                 }
                 delta_ms = MAX_DELTA_MS; // Cap to 1 hour
             }
